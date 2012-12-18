@@ -27,15 +27,13 @@ MATINC=-I$(MATPATH)/extern/include
 LIB=-lm $(MATLIB)
 
 # C compiler compile option
-CFLAGS=-O3 -DMATLAB_SIMULATION# -g
+CFLAGS=-O3 #-DMATLAB_SIMULATION -g
 
 all:abd2d
-abd2d:abd2d-niu.o InonizationFormula.o
-	$(CC) -o abd2d abd2d-niu.o InonizationFormula.o $(LIB)
-abd2d-niu.o:$(SRC)/abd2d-niu.c $(SRC)/*.h
-	$(CC) $(CFLAGS) -c $(SRC)/abd2d-niu.c $(MATINC)
-InonizationFormula.o:$(SRC)/InonizationFormula.c $(SRC)/*.h
-	$(CC) $(CFLAGS) -c $(SRC)/InonizationFormula.c
+abd2d:abd2d.o 
+	$(CC) -o abd2d abd2d.o $(LIB)
+abd2d.o:$(SRC)/abd2d.c $(SRC)/*.h
+	$(CC) $(CFLAGS) -c $(SRC)/abd2d.c $(MATINC)
 clean:
 	rm -f *.o abd2d
 
